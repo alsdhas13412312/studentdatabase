@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvard University</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #e57373, #ffffff);
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e57373;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 80px;
+            cursor: pointer;
+        }
+        .nav-title {
+            font-size: 1.5em;
+            color: white;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #ef9a9a;
+            border-radius: 5px;
+        }
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .search-container input {
+            width: 60%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #e57373;
+            border-radius: 5px;
+        }
+        .login-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #e57373;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #ef9a9a;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 50%; /* Reduced to make the slideshow smaller */
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .image-slide, .quote-slide {
+            display: none;
+            width: 100%;
+            border-radius: 10px;
+        }
+        .quote-slide {
+            background-color: #f4f4f4;
+            padding: 5px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: #e57373;
+        }
+        #quote-slideshow {
+         margin-top: 1%; /* Adjust this value to add the desired space */
+        }
+        .contact{
+            display: inline-flex;
+            margin-left: 140px;
+        }
+        .contact iframe{
+            padding: 20px;
+            background-color: white;
+        }
+        .map{
+            padding: 20px;
+        }
+        .fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  border-radius: 15px;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  border-radius: 15px;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+  border-radius: 15px;
+}
+footer{
+    background-color: black;
+    padding: 50px;
+}
+.socmed{
+    margin-left: 550px;
+}
+
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="Harvard_University_coat_of_arms.svg.png" alt="Harvard University Logo" onclick="redirectToHome()" />
+            <span class="nav-title">Harvard University</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a>News</a>
+            <a href="dashboard.html">Menu</a>
+            <a>About</a>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search..."/>
+    </div>
+
+    <!-- Quote Slideshow (Top) -->
+    <div class="slideshow-container" id="quote-slideshow">
+        <div class="quote-slide">“Education is the most powerful weapon which you can use to change the world.” — Nelson Mandela</div>
+        <div class="quote-slide">“The only way to do great work is to love what you do.” — Steve Jobs</div>
+        <div class="quote-slide">“Harvard is about the idea that it is possible to learn anything.” — Unknown</div>
+    </div>
+    <div class="dots" id="quote-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <!-- Image Slideshow (Bottom) -->
+    <div class="slideshow-container" id="image-slideshow">
+        <img class="image-slide" src="Harvard_1.jpg" alt="Slide 1">
+        <img class="image-slide" src="Harvard_2.jpg" alt="Slide 2">
+        <img class="image-slide" src="Harvard_3.jpg" alt="Slide 3"> 
+    </div>
+    <div class="dots" id="image-dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <script>
+        // Redirect logo to homepage
+        function redirectToHome() {
+            window.location.href = "index.html";
+        }
+
+        // Redirect to login page
+        function redirectToLogin() {
+            window.location.href = "login.html";
+        }
+
+        // Slideshow script for image slides
+        let imageIndex = 0;
+        const imageSlides = document.querySelectorAll(".image-slide");
+        const imageDots = document.querySelectorAll("#image-dots .dot");
+
+        function showImageSlides() {
+            imageSlides.forEach(slide => slide.style.display = "none");
+            imageDots.forEach(dot => dot.classList.remove("active"));
+
+            imageIndex++;
+            if (imageIndex > imageSlides.length) imageIndex = 1;
+
+            imageSlides[imageIndex - 1].style.display = "block";
+            imageDots[imageIndex - 1].classList.add("active");
+
+            setTimeout(showImageSlides, 3000); // Change every 3 seconds
+        }
+
+        showImageSlides();
+
+        // Slideshow script for quote slides
+        let quoteIndex = 0;
+        const quoteSlides = document.querySelectorAll(".quote-slide");
+        const quoteDots = document.querySelectorAll("#quote-dots .dot");
+
+        function showQuoteSlides() {
+            quoteSlides.forEach(slide => slide.style.display = "none");
+            quoteDots.forEach(dot => dot.classList.remove("active"));
+
+            quoteIndex++;
+            if (quoteIndex > quoteSlides.length) quoteIndex = 1;
+
+            quoteSlides[quoteIndex - 1].style.display = "block";
+            quoteDots[quoteIndex - 1].classList.add("active");
+
+            setTimeout(showQuoteSlides, 3000); // Change every 3 seconds
+        }
+
+        showQuoteSlides();
+    </script>
+    <div class="contact">
+    <div class="youtube">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/shMZEks4qRM?si=IRAkkKlf1oF6uyWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.6627075795554!2d-71.12082372406809!3d42.37443677119154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e377427d7f0199%3A0x5937c65cee2427f0!2sHarvard%20University!5e1!3m2!1sen!2sph!4v1732861894160!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<footer>
+    <div class="socmed">
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-google"></a>
+</div>
+</footer>
+</body>
+</html>
